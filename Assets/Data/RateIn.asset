@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21b8ad20844c6f4295ec663df23cf9a, type: 3}
   m_Name: RateIn
   m_EditorClassIdentifier: 
-  value: 10
+  value: 25.448364
