@@ -1,18 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FlowController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private FloatValue rateIn;
+    [SerializeField] private FloatValue rateOut;
+    [SerializeField] private IntValue bufferCount;
 
-    // Update is called once per frame
+    [SerializeField] private float factorIn;
+    [SerializeField] private float factorBuffer;
+    [SerializeField] private float drainRate;
+
+    [System.NonSerialized] public float smoothIn;
+    [System.NonSerialized] public float smoothBuffer;
+
     void Update()
     {
-        
+        smoothIn = rateIn;
+        smoothBuffer = bufferCount * drainRate;
+        rateOut.value = (factorIn * smoothIn) + (factorBuffer * smoothBuffer);
     }
 }
