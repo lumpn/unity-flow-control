@@ -20,12 +20,16 @@ public class FlowDemo : MonoBehaviour
 
     const int historySize = 1024;
     [System.NonSerialized] private int historyIndex = 0;
-    [System.NonSerialized] private readonly int[] historyIn = new int[historySize];
-    [System.NonSerialized] private readonly int[] historyOut = new int[historySize];
+    [System.NonSerialized] private readonly float[] historyIn = new float[historySize];
+    [System.NonSerialized] private readonly float[] historyOut = new float[historySize];
     [System.NonSerialized] private readonly int[] historyBuffer = new int[historySize];
 
     [System.NonSerialized] private int latencyIndex = 0;
     [System.NonSerialized] private readonly float[] latencies = new float[historySize];
+
+    [System.NonSerialized] public float minLatency;
+    [System.NonSerialized] public float maxLatency;
+    [System.NonSerialized] public float avgLatency;
 
     [System.NonSerialized] private readonly Vector3[] positions = new Vector3[historySize];
 
@@ -41,6 +45,16 @@ public class FlowDemo : MonoBehaviour
         public float OnComplete(float time)
         {
             return (time - timeStart);
+        }
+    }
+
+    public void Add(int numIn)
+    {
+        var time = Time.time;
+        for (int i = 0; i < numIn; i++)
+        {
+            var elm = new Element(time);
+            buffer.Enqueue(elm);
         }
     }
 
@@ -68,7 +82,7 @@ public class FlowDemo : MonoBehaviour
             var elm = buffer.Dequeue();
             var lat = elm.OnComplete(time);
 
-            latencies[latencyIndex] = lat;
+            latencies[latencyIndex] = lat * 100;
             latencyIndex = (latencyIndex + 1) % historySize;
         }
 
@@ -82,9 +96,22 @@ public class FlowDemo : MonoBehaviour
             buffer.Enqueue(elm);
         }
 
+        // latency stats
+        minLatency = float.MaxValue;
+        maxLatency = float.MinValue;
+        var sum = 0f;
+        foreach (var lat in latencies)
+        {
+            var latency = lat * 10f;
+            minLatency = Mathf.Min(minLatency, latency);
+            maxLatency = Mathf.Max(maxLatency, latency);
+            sum += latency;
+        }
+        avgLatency = sum / historySize;
+
         // history
-        historyIn[historyIndex] = numIn;
-        historyOut[historyIndex] = numOut;
+        historyIn[historyIndex] = rateIn;
+        historyOut[historyIndex] = rateOut;
         historyBuffer[historyIndex] = buffer.Count;
         historyIndex = (historyIndex + 1) % historySize;
         bufferCount.value = buffer.Count;
