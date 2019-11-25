@@ -3,7 +3,7 @@
 [CreateAssetMenu]
 public class FloatValue : ScriptableObject
 {
-    public float value;
+    [SerializeField] public float value;
 
     public static implicit operator float(FloatValue value)
     {

@@ -631,7 +631,11 @@ MonoBehaviour:
   bufferCount: {fileID: 11400000, guid: f6b652a9b3546cd4cbd933d4127cb8d1, type: 2}
   factorIn: 1
   factorBuffer: 1
-  drainRate: 0.1
+  drainRate: 1
+  smoothTimeIn: 10
+  smoothTimeBuffer: 10
+  maxSpeedIn: 1000
+  maxSpeedBuffer: 1000
 --- !u!114 &1300509632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -644,8 +648,84 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffa0d4be1963aa4d8f4cfa01ed4e267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 7400000, guid: aae9b7e1669683c449c292511ac390c0, type: 2}
-  value: 0
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.0000038146973
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 199.9123
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.5
+      value: -0.000015258789
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2
+      value: 1000
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2.5
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3
+      value: 0.0000015254611
+      inSlope: 0.0000061018445
+      outSlope: 0.0000061018445
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3.5
+      value: 199.91231
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5
+      value: 0.0000038146973
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 1
+    m_PostInfinity: 1
+    m_RotationOrder: 4
   target: {fileID: 11400000, guid: 00d562f097cfe9a40a62471c0513befa, type: 2}
 --- !u!1 &1837849851
 GameObject:

@@ -2,13 +2,11 @@
 
 public class FloatAnimator : MonoBehaviour
 {
-    [SerializeField] private AnimationClip clip;
-    [SerializeField] private float value;
+    [SerializeField] private AnimationCurve curve;
     [SerializeField] private FloatValue target;
 
     void Update()
     {
-        clip.SampleAnimation(gameObject, Time.time);
-        target.value = value;
+        target.value = curve.Evaluate(Time.time);
     }
 }
