@@ -13,6 +13,8 @@ public class FlowDemo : MonoBehaviour
     [SerializeField] private FloatValue rateOut;
     [SerializeField] private IntValue bufferCount;
 
+    [SerializeField] private int targetFrameRate;
+
     [System.NonSerialized] public float fracIn;
     [System.NonSerialized] public float fracOut;
 
@@ -60,7 +62,7 @@ public class FlowDemo : MonoBehaviour
 
     void Start()
     {
-        Application.targetFrameRate = 1;
+        Application.targetFrameRate = targetFrameRate;
         rendererIn.positionCount = historySize;
         rendererOut.positionCount = historySize;
         rendererBuffer.positionCount = historySize;
